@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <style>
+        .title {
+            padding: 30px;
+        }
+        .setting {
+            display: flex;
+            justify-content: center;
+            /* display: inline-block;
+            margin-left: auto;
+            margin-right: auto; */
+        }
+        table {
+            border-collapse: collapse;
+            margin: 10px;
+        }
+        tr, td {
+            padding-left: 10px;
+            padding-right: 10px;
+            border: 1px solid black;
+            border-style: solid;
+        }
+    </style>
+    <head>
+        <title>모바일엔트로피 크롬 익스텐션 설정 페이지</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <div style="text-align: center;">
+            <h1 class="title">모바일엔트로피 헬퍼 설정 페이지</h1>
+        </div>
+        <div class="setting">
+            <table>
+                <!-- <tr>
+                    <th>설정</th>
+                    <td></td>
+                </tr> -->
+                <tr>
+                    <th>레드마인 URL</th>
+                    <td><input id="redmineUrl"></td>
+                </tr>
+                <tr>
+                    <th>레드마인 자동 로그인</th>
+                    <td><input type="checkbox" id="redmineAutoLogin"></td>
+                </tr>
+                <tr>
+                    <th>레드마인 ID</th>
+                    <td><input id="redmineId"></td>
+                </tr>
+                <tr>
+                    <th>레드마인 PW</th>
+                    <td><input id="redminePw"></td>
+                </tr>
+            </table>
+
+            <button id="saveBtn">저장</button>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,18 @@
+{
+    "manifest_version": 3,
+    "name": "MobileEntropy Helper Chrome Extension",
+    "version": "1.0",
+    "description": "모바일엔트로피에서 사용하는 다양한 기능을 지원해주는 크롬 확장 프로그램입니다",
+    "permissions": [
+        "tabs",
+        "storage",
+        "webNavigation"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "options_page": "options.html"
+}
