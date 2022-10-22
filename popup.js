@@ -3,7 +3,7 @@ const REDMINE_URL = "http://lab.entropykorea.com";
 document.getElementById("openRedmineIssue").addEventListener("click", (e) => {
     const redmineIssueIdx = parseInt(prompt("레드마인 번호를 입력해주세요"));
     
-    if(redmineIssueIdx === 0 || redmineIssueIdx === NaN) {
+    if(redmineIssueIdx === 0 || Number.isNaN(redmineIssueIdx)) {
         alert("레드마인 번호를 제대로 입력해주세요");
         return;
     }
