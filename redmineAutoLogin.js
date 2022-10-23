@@ -19,8 +19,7 @@
  * chrome.storage.local에서 데이터 가져오기
  */
 const getOptionData = async () => {
-    const optionData = await chrome.storage.local.get();
-    return optionData;
+  return await chrome.storage.local.get();
 };
 
 const login = async () => {
