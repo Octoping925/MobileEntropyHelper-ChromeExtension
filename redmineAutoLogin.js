@@ -11,6 +11,7 @@
     }
     catch (e) {
         alert("로그인 실패: " + e);
+        console.error(e);
     }
 }
 

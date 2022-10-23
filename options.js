@@ -49,7 +49,3 @@ document.getElementById("saveBtn").addEventListener("click", (e) => {
     
     chrome.storage.local.set(optionData, () => alert('저장 완료'));
 });
-
-document.getElementById("debug").addEventListener("click", (e) => {
-    chrome.storage.local.get('redmineUrl', data => console.log(data));
-});
