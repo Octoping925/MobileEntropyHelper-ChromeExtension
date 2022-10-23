@@ -8,6 +8,8 @@ const displayOptionData = () => {
     inputList.forEach(inputs => {
         const id = inputs.id;
         chrome.storage.local.get(id, data => {
+            if(data[id] === undefined) return;
+
             switch(inputs.type) {
                 case "text":
                     inputs.value = data[id];

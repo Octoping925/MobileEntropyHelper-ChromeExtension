@@ -1,42 +1,52 @@
-// const {
-//     Config
-//   } = require('./config.js');
-const Config = {
-    REDMINE_URL: "http://lab.entropykorea.com"
-};
+// import Config from "./config";
 
 chrome.runtime.onInstalled.addListener((reason) => {
-    if (reason === chrome.runtime.OnInstalledReason.INSTALL) {
-        chrome.tabs.create({
-            url: 'popup.html'
+    chrome.tabs.create({
+        url: 'options.html'
+    });
+
+    chrome.storage.local.set({redmineUrl: "http://lab.entropykorea.com"});
+});
+
+chrome.tabs.onUpdated.addListener(async function (tabId, changeInfo, tab) {
+    if (changeInfo.status == 'complete') {
+        const optionData = await chrome.storage.local.get();
+        const url = tab.url;
+
+        chrome.scripting.executeScript({
+            target: {tabId: tabId},
+            func: loginRedmine,
+            args: [optionData.redmineId, optionData.redminePw]
         });
+
+        // if(url.includes(optionData.redmineUrl + "/login") && optionData.redmineAutoLogin == optionData.redmineAutoLogin) {
+        //     const {redmineId, redminePw} = optionData;
+
+        //     chrome.scripting.executeScript({
+        //         target: {tabId: tabId},
+        //         func: () => {
+        //             document.getElementById("username").value = redmineId;
+        //             document.getElementById("password").value = redminePw;
+        //             document.getElementById("login-submit").click();
+        //         }
+        //     });
+        // }
     }
 });
 
-chrome.webNavigation.onCompleted.addListener(function(details) {
-    chrome.tabs.executeScript(details.tabId, {
-        code: `alert(1);`
-    });
-}, {
-    url: [{
-        // Runs on example.com, example.net, but also example.foo.com
-        hostContains: "naver.com"
-    }],
-    
-//     chrome.tabs.executeScript(details.tabId, {
-//         code: 'document.getElementById("username").value = ' + Config.REDMINE_ID + '; '
-//         + 'document.getElementById("password").value = ' + Config.REDMINE_PW + '; '
-//         + 'document.getElementById("login-submit").click();'
-//     });
-// }, {
-//     url: [{
-//         // Runs on example.com, example.net, but also example.foo.com
-//         hostContains: Config.REDMINE_URL + "/login"
-//     }],
-});
-
-// chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
-//     let url = tabs[0].url;
-//     // use `url` here inside the callback because it's asynchronous!
-
-// });
+/**
+ * 레드마인 로그인
+ * @param {string} id 레드마인 아이디
+ * @param {string} password 레드마인 비밀번호
+ */
+ const loginRedmine = (id, password) => {
+    try {
+        alert(1);
+        document.getElementById("username").value = id;
+        document.getElementById("password").value = password;
+        document.getElementById("login-submit").click();
+    }
+    catch (e) {
+        alert("로그인 실패: " + e);
+    }
+}
