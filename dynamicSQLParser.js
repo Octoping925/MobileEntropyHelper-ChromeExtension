@@ -18,7 +18,7 @@ function parse(text) {
 
     if(text.substring(0, startIdx).includes('--')) return resultStr;
 
-    const substrText = text.substring(startIdx, endIdx).replaceAll("CHR(39)", "''");
+    const substrText = text.substring(startIdx, endIdx).replaceAll("CHR(39)", "''''");
 
     let inStr = false;
 
@@ -40,7 +40,8 @@ function parse(text) {
                 break;
             
             case '-':
-                if(!inStr && substrText[i+1] == '-') {
+                if(inStr) resultStr += substrText[i];
+                else if(substrText[i+1] == '-') {
                     return resultStr;
                 }
                 break;
