@@ -20,3 +20,9 @@ const getRedmineIssueUrl = async (issueIdx) => {
     const optionData = await chrome.storage.local.get();
     return `${optionData.redmineUrl}/issues/${issueIdx}`;
 };
+
+document.getElementById("openDynamicSQLParser").addEventListener("click", e => {
+    chrome.tabs.create({
+        url: "dynamicSQLParser.html"
+    });
+});
