@@ -28,10 +28,7 @@ document.getElementById("writeRedmineIssueByEmail").addEventListener("click", as
     }
     
     const {mailTitle, mailBody} = await getDetailFromEmail(mailSN);
-    alert(mailTitle);
-    alert(mailBody);
-
-    await writeRedmineIssue(mailTitle, mailBody);
+    writeRedmineIssue(mailTitle, mailBody);
 });
 
 /**
@@ -117,7 +114,6 @@ const writeRedmineIssue = async (title, content) => {
                 const redmineTitle = document.getElementById("issue_subject");
                 const redmineContent = document.getElementById("issue_description");
 
-                alert(1);
                 redmineTitle.value = title;
                 redmineContent.value = content;
             },
