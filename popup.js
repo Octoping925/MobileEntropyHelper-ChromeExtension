@@ -1,3 +1,9 @@
+document.getElementById("openOption").addEventListener("click", () => {
+    chrome.tabs.create({
+        url: 'options.html'
+    });
+});
+
 document.getElementById("openRedmineIssue").addEventListener("click", async () => {
     const redmineIssueIdx = parseInt(prompt("레드마인 번호를 입력해주세요"));
     
