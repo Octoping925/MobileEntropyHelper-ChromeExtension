@@ -10,6 +10,9 @@
         "tabs",
         "activeTab"
     ],
+    "host_permissions": [
+        "http://lab.entropykorea.com/*"
+    ],
     "background": {
         "service_worker": "background.js",
         "type": "module"
