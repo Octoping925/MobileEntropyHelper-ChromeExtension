@@ -35,6 +35,7 @@ document.getElementById("saveBtn").addEventListener("click", (e) => {
         let value;
         switch(inputs.type) {
             case "text":
+            case "password":
                 value = inputs.value;
                 break;
             case "checkbox":
