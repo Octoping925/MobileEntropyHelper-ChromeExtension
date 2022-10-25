@@ -25,6 +25,7 @@ document.getElementById("writeRedmineIssueByEmail").addEventListener("click", as
     if(mailSN === null) {
         alert("이메일 주소가 올바르지 않습니다");
         console.error(url);
+        return;
     }
     
     const {mailTitle, mailBody} = await getDetailFromEmail(mailSN);
