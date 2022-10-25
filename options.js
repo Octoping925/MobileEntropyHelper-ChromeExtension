@@ -12,6 +12,7 @@ const displayOptionData = () => {
 
             switch(inputs.type) {
                 case "text":
+                case "password":
                     inputs.value = data[id];
                     break;
                 case "checkbox":
