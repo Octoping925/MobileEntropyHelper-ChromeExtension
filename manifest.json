@@ -28,6 +28,6 @@
     },
     "options_page": "options.html",
     "icons": {
-        "132": "icon132.png"
+        "132": "./img/icon132.png"
     }
 }
