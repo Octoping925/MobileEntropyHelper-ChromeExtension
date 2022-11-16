@@ -38,6 +38,20 @@ document.getElementById("writeRedmineIssueByEmail").addEventListener("click", as
     writeRedmineIssue(mailTitle, mailBody);
 });
 
+document.getElementById("writeRedmineIssueByChamvitWorks").addEventListener("click", async () => {
+    const tabData = await getTabData();
+    const url = tabData.url;
+
+    if(!url.includes("charmvit.daouoffice.com")) {
+        alert("주소가 올바르지 않습니다");
+        console.error(url);
+        return;
+    }
+
+    const {title, context} = await getDetailFromCharmVit();
+    writeRedmineIssue(title, context);
+});
+
 /**
  * 옵션에서 입력한 레드마인 URL 얻어오기
  * @returns {string}
@@ -101,6 +115,34 @@ const getDetailFromEmail = async (mailSN) => {
     });
     
     return mailData[0].result;
+};
+
+/**
+ * 활성화 된 참빛 워크스 창에서 제목과 내용 얻기
+ * @returns {object} 이슈 제목과 내용
+ */
+const getDetailFromCharmVit = async () => {
+    const tabData = await getTabData();
+    const charmvitData = await chrome.scripting.executeScript({
+        target: {tabId: tabData.id},
+        func: () => {
+            const title = document.getElementById("subject").innerText;
+            const contextElements = document.getElementById("fb-canvas-detail").children;
+            
+            let context = "";
+            for(const element of contextElements) {
+                const label = element.querySelector(".box_label_wrap").innerText;
+                const data = element.querySelector(".build_box_data").innerText
+                
+                context += `*${label}*\n`
+                         + `${data}\n\n`;
+            }
+
+            return {title, context};
+        },
+    });
+
+    return charmvitData[0].result;
 };
 
 /**
